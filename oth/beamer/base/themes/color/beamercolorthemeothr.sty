@@ -1,0 +1,62 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemeothr}[2015/12/03 v0.1]
+
+\mode<presentation>
+
+%undruchsichtiges weiß
+\definecolor{opaquewhite}{rgb}{1,1,1}
+
+%Alternativdefinitionen der Standartfarben aus beamercolortehmedefault
+\setbeamercolor{graybox}{bg=OTHR}
+\setbeamercolor{blackbox}{bg=black}
+
+\setbeamercolor{separation line}{use=structure,bg=black}
+\setbeamercolor{lower separation line foot}{bg=black}
+
+\setbeamercolor{author in head/foot}{fg=black,bg=white}
+\setbeamercolor{title in head/foot}{fg=black,bg=white}
+\setbeamercolor{date in head/foot}{fg=black,bg=white}
+
+\setbeamercolor{sectionhead}{fg=black}
+\setbeamercolor{subsectionhead}{fg=black}
+
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+
+%\usecolortheme[named=yellow]{structure}
+
+\setbeamercolor{structure}{fg=Accent}
+
+\setbeamercolor{block title}{use=structure,fg=AccentContrastColor,bg=Accent}
+\setbeamercolor{block title alerted}{use=alerted text,fg=AccentContrastColor,bg=alerted text.fg!75!black}
+\setbeamercolor{block title example}{use=example text,fg=AccentContrastColor,bg=example text.fg!75!black}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=Accent!10!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+\setbeamercolor{title}{fg=AccentFontColor}
+\setbeamercolor{frametitle}{fg=AccentFontColor}
+\setbeamercolor{framesubtitle}{fg=black}
+
+\setbeamercolor{section in toc}{fg=AccentFontColor}
+
+\setbeamercolor{caption name}{fg=AccentFontColor}
+
+\setbeamercolor{description item}{fg=AccentFontColor}
+
+\setbeamercolor{enumerate item}{fg=AccentFontColor}
+\setbeamercolor{enumerate subitem}{fg=AccentFontColor}
+\setbeamercolor{enumerate subsubitem}{fg=AccentFontColor}
+
+\setbeamercolor{itemize item}{fg=AccentFontColor}
+\setbeamercolor{itemize subitem}{fg=AccentFontColor}
+\setbeamercolor{itemize subsubitem}{fg=AccentFontColor}
+
+
+
+\mode
+<all>

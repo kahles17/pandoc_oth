@@ -1,0 +1,200 @@
+%
+% Farbdefinitionen nach dem Corporate Identity Design der OTH Regensburg
+% Stand Oktober 2015
+%
+\ProvidesPackage{OTHR_logos}[2015/10/01]
+%
+\RequirePackage{graphicx}
+\RequirePackage{xkeyval}
+\RequirePackage{pdftexcmds}
+
+%
+\newlength{\faklogosmall}
+\setlength{\faklogosmall}{16mm}
+\newlength{\faklogonormal}
+\setlength{\faklogonormal}{20mm}
+\newlength{\faklogolarge}
+\setlength{\faklogolarge}{24mm}
+\newlength{\faklogohuge}
+\setlength{\faklogohuge}{28mm}
+
+%
+\newcommand{\logoFlexible}{}
+%
+
+\def\@defineDepartmentlogos#1{%
+
+	\ifnum\pdf@strcmp{#1}{OTHR}=\z@ %
+		\def\logoSmall{\includegraphics[height=12mm]{OTHR_#1_Logo}}
+		\def\logoNormal{\includegraphics[height=16mm]{OTHR_#1_Logo}}
+		\def\logoLarge{\includegraphics[height=20mm]{OTHR_#1_Logo}}
+		\def\logoHuge{\includegraphics[height=24mm]{OTHR_#1_Logo}}
+		\renewcommand{\logoFlexible}[1][draft]{\includegraphics[##1]{OTHR_#1_Logo}}
+	\else %
+		\def\logoSmall{\includegraphics[height=\faklogosmall]{OTHR_#1_Logo}}
+		\def\logoNormal{\includegraphics[height=\faklogonormal]{OTHR_#1_Logo}}
+		\def\logoLarge{\includegraphics[height=\faklogolarge]{OTHR_#1_Logo}}
+		\def\logoHuge{\includegraphics[height=\faklogohuge]{OTHR_#1_Logo}}
+		\renewcommand{\logoFlexible}[1][draft]{\includegraphics[##1]{OTHR_#1_Logo}}
+	\fi %
+}
+
+% Statische Logos
+
+% Labore mit Zahlen im Namen sind... "kompliziert"
+% da Zahlen in Latexmacronamen nicht erlaubt sind
+% \@fixedLogos{LaborName}[optionaler-Logo-Dateiname]
+% wird das zweite Argument nicht angegeben, wird das
+% erste Argument als Argument verwendet
+\newcommand{\@defineLogos}[1]{%
+  \@ifnextchar[{\@defineLogos@i{#1}}{\@defineLogos@i{#1}[#1]}%
+}
+\def\@defineLogos@i#1[#2]{%
+	\ifnum\pdf@strcmp{#1}{OTHR}=\z@ %
+		\expandafter\newcommand\csname logoSmall#1\endcsname{{\includegraphics[height=12mm]{OTHR_#2_Logo}}}
+		\expandafter\newcommand\csname logoNormal#1\endcsname{{\includegraphics[height=16mm]{OTHR_#2_Logo}}}
+		\expandafter\newcommand\csname logoLarge#1\endcsname{{\includegraphics[height=20mm]{OTHR_#2_Logo}}}
+		\expandafter\newcommand\csname logoHuge#1\endcsname{{\includegraphics[height=24mm]{OTHR_#2_Logo}}}
+		\expandafter\newcommand\csname logoFlexible#1\endcsname[1][draft]{{\includegraphics[##1]{OTHR_#2_Logo}}}
+	\else %
+		\expandafter\newcommand\csname logoSmall#1\endcsname{{\includegraphics[height=\faklogosmall]{OTHR_#2_Logo}}}
+		\expandafter\newcommand\csname logoNormal#1\endcsname{{\includegraphics[height=\faklogonormal]{OTHR_#2_Logo}}}
+		\expandafter\newcommand\csname logoLarge#1\endcsname{{\includegraphics[height=\faklogolarge]{OTHR_#2_Logo}}}
+		\expandafter\newcommand\csname logoHuge#1\endcsname{{\includegraphics[height=\faklogohuge]{OTHR_#2_Logo}}}
+		\expandafter\newcommand\csname logoFlexible#1\endcsname[1][draft]{{\includegraphics[##1]{OTHR_#2_Logo}}}
+	\fi %
+}
+
+\newcommand{\@defineKurzLogos}[1]{%
+  \@ifnextchar[{\@defineKurzLogos@i{#1}}{\@defineKurzLogos@i{#1}[#1]}%
+}
+\def\@defineKurzLogos@i#1[#2]{%
+	\expandafter\newcommand\csname kurzlogoSmall#1\endcsname{{\includegraphics[height=\faklogosmall]{OTHR_#2_Logo_kurz}}}
+	\expandafter\newcommand\csname kurzlogoNormal#1\endcsname{{\includegraphics[height=\faklogonormal]{OTHR_#2_Logo_kurz}}}
+	\expandafter\newcommand\csname kurzlogoLarge#1\endcsname{{\includegraphics[height=\faklogolarge]{OTHR_#2_Logo_kurz}}}
+	\expandafter\newcommand\csname kurzlogoHuge#1\endcsname{{\includegraphics[height=\faklogohuge]{OTHR_#2_Logo_kurz}}}
+	\expandafter\newcommand\csname kurzlogoFlexible#1\endcsname[1][draft]{{\includegraphics[##1]{OTHR_#2_Logo_kurz}}}
+}
+
+% OTHR Logos
+\@defineLogos{OTHR}
+\@defineKurzLogos{OTHR}
+\@defineLogos{OTHRLaTeX}
+
+% sonstiges
+\@defineLogos{IPF}
+\@defineLogos{ZWW}
+
+% Fakultätslogos
+\@defineLogos{FakA}
+\@defineLogos{FakAM}
+\@defineLogos{FakANK}
+\@defineLogos{FakB}
+\@defineLogos{FakBW}
+\@defineLogos{FakEI}
+\@defineLogos{FakIM}
+\@defineLogos{FakM}
+\@defineLogos{FakS}
+
+% Logos für Center
+\@defineLogos{RCER}
+\@defineLogos{RCHST}
+
+% Laborlogos
+% FakAM
+\@defineLogos{SappZ}
+\@defineLogos{NACH}
+
+% FakB
+\@defineLogos{Geo}
+\@defineLogos{KNB}
+
+% Fak BW
+\@defineLogos{OneTwoScience}[12Science]
+
+% FakEI
+\@defineLogos{LASIII}[LAS3]
+\@defineLogos{DKOPT}[DK0PT]
+\@defineLogos{FENES}
+\@defineLogos{SES}
+\@defineLogos{Bisp}
+\@defineLogos{MRU}
+
+% FakIM
+\@defineLogos{CCSE}
+\@defineLogos{eHealth}
+\@defineLogos{ITZ}
+\@defineLogos{LFD}
+\@defineLogos{MD}
+\@defineLogos{ReMIC}
+\@defineLogos{SEC}
+
+% FakM
+\@defineLogos{BFM}
+\@defineLogos{BMA}
+\@defineLogos{CEEC}
+\@defineLogos{CFD}
+\@defineLogos{KIB}
+\@defineLogos{KWK}
+\@defineLogos{LAT}
+\@defineLogos{LBM}
+\@defineLogos{LeanLab}
+\@defineLogos{LFT}
+\@defineLogos{LFW}
+\@defineLogos{LMP}
+\@defineLogos{LMS}
+\@defineLogos{LRT}
+\@defineLogos{LWM}
+\@defineLogos{LWS}
+\@defineLogos{MKS}
+\@defineLogos{MST}
+\@defineLogos{RRRU}
+\@defineLogos{RST}
+\@defineLogos{FEM}
+
+% FakS
+\@defineLogos{IST}
+\@defineLogos{LP}
+\@defineLogos{PT}
+%
+% Official-Logo Commands
+\newcommand{\OfficialLogoSmall}{\logoSmallOTHR}
+\newcommand{\OfficialLogoNormal}{\logoNormalOTHR}
+\newcommand{\OfficialLogoLarge}{\logoLargeOTHR}
+\newcommand{\OfficialLogoHuge}{\logoHugeOTHR}
+\newcommand{\OfficialLogoFlexible}[1][1]{\logoFlexibleOTHR[#1]}
+%
+\newcommand{\useDepartmentLogo}{
+\renewcommand{\OfficialLogoSmall}{\logoSmall}
+\renewcommand{\OfficialLogoNormal}{\logoNormal}
+\renewcommand{\OfficialLogoLarge}{\logoLarge}
+\renewcommand{\OfficialLogoHuge}{\logoHuge}
+\renewcommand{\OfficialLogoFlexible}[1][1]{\logoFlexible[##1]}
+}
+\newcommand{\useOTHRLogo}{
+\renewcommand{\OfficialLogoSmall}{\logoSmallOTHR}
+\renewcommand{\OfficialLogoNormal}{\logoNormalOTHR}
+\renewcommand{\OfficialLogoLarge}{\logoLargeOTHR}
+\renewcommand{\OfficialLogoHuge}{\logoHugeOTHR}
+\renewcommand{\OfficialLogoFlexible}[1][1]{\logoFlexibleOTHR[##1]}
+}
+
+%Optionen
+\DeclareOptionX*{}
+\DeclareOptionX{department}[OTHR]{%
+	\csname @defineDepartmentlogos\endcsname{#1}
+}
+\DeclareOptionX{useDepartmentLogo}{%
+  \useDepartmentLogo{}
+}
+\DeclareOptionX{useOTHRLogo}{%
+  \useOTHRLogo{}
+}
+
+% Set up defaults
+\@defineDepartmentlogos{OTHR}
+
+\ProcessOptionsX*\relax
+
+
+ 

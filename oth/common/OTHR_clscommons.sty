@@ -1,0 +1,182 @@
+%
+%
+%
+\ProvidesPackage{OTHR_clscommons}
+%
+\RequirePackage{etoolbox}
+\RequirePackage{anyfontsize}
+\RequirePackage{iflang}
+%
+\newlength{\tlimagewidth}
+\newlength{\trboxwidth}
+%
+\date{}
+% Language dependent definitions
+% default: German
+\newcommand{\othr@common@departmentlabel}{Fakult\"at}
+\newcommand{\othr@common@programlabel}{Studiengang}
+\newcommand{\othr@common@closingdatelabel}{Abgabefrist}
+\newcommand{\othr@common@startingdatelabel}{Ausgabedatum}
+\newcommand{\othr@common@workingframelabel}{Bearbeitungszeitraum}
+\newcommand{\othr@common@studentidlabel}{Matrikelnummer}
+\newcommand{\othr@common@legalauthorlabel}{Vorgelegt durch}
+\newcommand{\othr@common@firstadvisorlabel}{Betreuung}
+\newcommand{\othr@common@secondadvisorlabel}{Zweitbegutachtung}
+\newcommand{\othr@common@externaladvisorlabel}{Externe Betreuung}
+% English
+\AtBeginDocument{\IfLanguageName{english}{%
+\renewcommand{\othr@common@departmentlabel}{Faculty}
+\renewcommand{\othr@common@programlabel}{Study Programme}
+\renewcommand{\othr@common@closingdatelabel}{Deadline}
+\renewcommand{\othr@common@startingdatelabel}{Starting Date}
+\renewcommand{\othr@common@workingframelabel}{Time Frame}
+\renewcommand{\othr@common@studentidlabel}{Student ID}
+\renewcommand{\othr@common@legalauthorlabel}{Presented by}
+\renewcommand{\othr@common@firstadvisorlabel}{Supervisor}
+\renewcommand{\othr@common@secondadvisorlabel}{Secondary Supervisor}
+\renewcommand{\othr@common@externaladvisorlabel}{External Supervisor}
+}{}}
+% Default values
+\newcommand{\othr@thesis@department}{}
+\newcommand{\othr@thesis@studycourse}{}
+\newcommand{\othr@thesis@closingdate}{}
+\newcommand{\othr@thesis@firstadvisor}{}
+\newcommand{\othr@thesis@secondadvisor}{}
+\newcommand{\othr@thesis@externaladvisor}{}
+\newcommand{\othr@thesis@matrikelnumber}{}
+\newcommand{\othr@thesis@thesistype}{Missing \textbackslash documenttype}
+% User Commands
+\newcommand{\department}[1]{\def\othr@thesis@department{#1}}
+\newcommand{\studyprogramme}[1]{\def\othr@thesis@studycourse{#1}}
+\newcommand{\studentid}[1]{\def\othr@thesis@matrikelnumber{#1}}
+\newcommand{\startingdate}[1]{\def\othr@thesis@startingdate{#1}}
+\newcommand{\closingdate}[1]{\def\othr@thesis@closingdate{#1}}
+\newcommand{\firstadvisor}[1]{\def\othr@thesis@firstadvisor{#1}}
+\newcommand{\secondadvisor}[1]{\def\othr@thesis@secondadvisor{#1}}
+\newcommand{\externaladvisor}[1]{\def\othr@thesis@externaladvisor{#1}}
+% external logo stuff
+\newcommand{\othr@thesis@externallogoPresent}{}
+\def\othr@thesis@externallogo{}
+\newcommand{\externallogo}[2][height=12mm]{
+	\renewcommand{\othr@thesis@externallogoPresent}{true}
+	\def\othr@thesis@externallogo{\includegraphics[#1]{#2}}
+}
+%
+\newcommand{\TheDocumenttype}{}
+%
+\newcommand{\documenttype}[1]{\renewcommand{\TheDocumenttype}{#1}\renewcommand{\othr@thesis@thesistype}{#1}}
+\newcommand{\TheLogo}{\OfficialLogoNormal}
+\newcommand{\SetLogo}[1]{\renewcommand{\TheLogo}{#1}}
+%
+\newcommand{\makehead}{%
+\settowidth{\tlimagewidth}{\TheLogo}%
+\setlength{\trboxwidth}{\textwidth}%
+\addtolength{\trboxwidth}{-1.0\tlimagewidth}%
+\begin{minipage}[t]{\tlimagewidth}\vspace{0pt}\TheLogo\end{minipage}\hfill%
+\begin{minipage}[t]{\trboxwidth}\vspace{0pt}\flushright\Large \TheDocumenttype\end{minipage}\\%
+\vspace{1mm plus 5mm minus 2mm}%
+}
+%
+%
+% Provide special maketitle-commands
+\newcommand{\@setlongtitle}{%
+\renewcommand*{\maketitle}{%
+  \begin{titlepage}\sffamily\thispagestyle{empty}\enlargethispage{.05\paperheight}%
+		\noindent\begin{minipage}{\linewidth}\noindent%
+		\ifdefempty{\othr@thesis@externallogoPresent}{\TheLogo}{\TheLogo\hfill\othr@thesis@externallogo}
+		\end{minipage}
+    
+    \vfill\vfill
+    
+    \noindent{\fontsize{28}{34}\selectfont\bfseries\MakeUppercase\othr@thesis@thesistype}\\[1em]
+    \begin{flushleft}\noindent\LARGE\@author\end{flushleft}
+    
+    \vfill\vfill
+    
+    {\noindent\fontsize{20}{24}\selectfont\raggedright\textbf\@title \par%
+    \ifdefempty{\@subtitle}{}{\vspace{1.5ex}\@subtitle\par}}
+    
+    \vfill\vfill\vfill\vfill
+
+		\noindent{\large\@date}
+
+    \vfill
+
+    \noindent\raggedright
+    {\fontsize{12}{15}\selectfont\begin{tabular}{@{}l@{\qquad}l@{}}
+	    \ifdefempty{\othr@thesis@department}{}{\othr@common@departmentlabel: & \othr@thesis@department\\}
+    \ifdefempty{\othr@thesis@studycourse}{}{\othr@common@programlabel: & \othr@thesis@studycourse\\}
+	    \ifdefempty{\othr@thesis@closingdate}{}{\othr@common@closingdatelabel: & \othr@thesis@closingdate\\}
+	    \ifdefempty{\othr@thesis@firstadvisor}{}{\othr@common@firstadvisorlabel: & \othr@thesis@firstadvisor\\}
+	    \ifdefempty{\othr@thesis@secondadvisor}{}{\othr@common@secondadvisorlabel: & \othr@thesis@secondadvisor\\}
+	    \ifdefempty{\othr@thesis@externaladvisor}{}{\othr@common@externaladvisorlabel: & \othr@thesis@externaladvisor\\}
+    \end{tabular}}
+    \clearpage
+  \end{titlepage}
+}%
+}
+%
+\newcommand{\@setshorttitle}{%
+\renewcommand*{\maketitle}{%
+\thispagestyle{plain}\vspace*{-.085\paperheight}\makehead\par%
+\vspace*{7ex}
+\begin{center}\sffamily%
+{\fontsize{20}{24}\selectfont\textbf\@title \par}
+
+\vspace{1ex}
+
+{\Large \@author}
+  
+\vspace{2ex}
+
+{\large\@date}
+\end{center}
+\vspace*{5ex}
+}%
+}
+%%
+%
+% Erklaerung fuer Eigenleistung
+% 
+\newcommand*{\makedeclaration}{%
+	{\cleardoublepage\thispagestyle{empty}\enlargethispage{.05\paperheight}%
+	
+	\textbf{Erkl\"arung}
+	\begin{enumerate}
+	\item Mir ist bekannt, dass dieses Exemplar der \othr@thesis@thesistype{} als Pr\"ufungsleistung in das Eigentum der Ostbayerischen Technischen Hochschule Regensburg \"ubergeht.
+	\item Ich erkl\"are hiermit, dass ich diese \othr@thesis@thesistype{} selbstst\"andig verfasst, noch nicht anderweitig für Pr\"ufungszwecke vorgelegt, keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie w\"ortliche und sinngem\"a\ss e Zitate als solche gekennzeichnet habe.
+	\end{enumerate}
+	
+	\vskip22mm
+	\hrule
+	\vskip1mm
+	{\footnotesize Ort, Datum und Unterschrift}
+	
+	\vfill
+		
+    \noindent\raggedright
+    {\fontsize{12}{15}\selectfont\begin{tabular}{@{}l@{\qquad}l@{}}
+	    \ifdefempty{\@author}{}{\othr@common@legalauthorlabel: & \@author\\}
+	    \ifdefempty{\othr@thesis@matrikelnumber}{}{\othr@common@studentidlabel: & \othr@thesis@matrikelnumber\\}
+    \ifdefempty{\othr@thesis@studycourse}{}{\othr@common@programlabel: & \othr@thesis@studycourse\\}
+	    \ifdefempty{\othr@thesis@closingdate}{}{\othr@common@workingframelabel: & \othr@thesis@startingdate{} -- \othr@thesis@closingdate\\}
+	    \ifdefempty{\othr@thesis@firstadvisor}{}{\othr@common@firstadvisorlabel: & \othr@thesis@firstadvisor\\}
+	    \ifdefempty{\othr@thesis@secondadvisor}{}{\othr@common@secondadvisorlabel: & \othr@thesis@secondadvisor\\}
+	    \ifdefempty{\othr@thesis@externaladvisor}{}{\othr@common@externaladvisorlabel: & \othr@thesis@externaladvisor\\}
+    \end{tabular}}
+    \clearpage
+}
+}
+
+%Implement Options
+\@setlongtitle{}
+\DeclareOptionX*{}
+\DeclareOptionX{titlepage}{%
+  \@setlongtitle{}
+}
+\DeclareOptionX{notitlepage}{%
+  \@setshorttitle{}
+}
+
+\ProcessOptionsX*\relax
+

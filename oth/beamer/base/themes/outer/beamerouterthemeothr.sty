@@ -1,0 +1,174 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerouterthemeothr}[2015/12/03 v0.1]
+
+\mode<presentation>
+%Damit insertframetitle innerhalb von headline funktioniert
+\providecommand\insertframetitle{}
+
+\setbeamercolor{section in head/foot}{fg=white, bg=black}
+
+\newlength{\beamerHeaderHeight}
+\setlength{\beamerHeaderHeight}{1cm}
+\ifnum\pdf@strcmp{\beamer@othr@department}{OTHR}=0
+	\def\beamerLogoWidth{3\beamerHeaderHeight}
+	\def\beamerLogoPadding{.15\beamerHeaderHeight}
+	\def\beamerLogoHeight{.7\beamerHeaderHeight}
+\else
+	\def\beamerLogoWidth{3\beamerHeaderHeight}
+	\def\beamerLogoHeight{.9\beamerHeaderHeight}
+	\def\beamerLogoPadding{.05\beamerHeaderHeight}
+%	\def\beamerLogoPadding{0pt}
+\fi
+
+
+\ifnum\pdf@strcmp{\beamer@othr@headerMode}{full}=0
+	\def\headerModeTitle{}
+	\def\headerModeSection{}
+	\def\headerModeSubSection{}
+	
+\else\ifnum\pdf@strcmp{\beamer@othr@headerMode}{frametitle}=0
+	\def\headerModeTitle{}
+
+\else\ifnum\pdf@strcmp{\beamer@othr@headerMode}{frametitleSection}=0
+	\def\headerModeTitle{}
+	\def\headerModeSection{}
+
+\else
+	%\PackageError{OTHR Beamer Template}{unkown headerMode}{}
+\fi\fi\fi
+
+\ifbeamer@othr@noNavbar
+	\setbeamertemplate{navigation symbols}{}
+\fi
+
+%Headline, *damit die Definition gleich aktiviert wird
+\defbeamertemplate*{headline}{OTHR}
+{
+\begin{textblock*}{\paperwidth}(0pt,0pt)
+	\vspace{\beamerLogoPadding}
+	\logo{\hspace*{\beamerLogoPadding}\OfficialLogoFlexible[height=\beamerLogoHeight]}
+%	\vskip1mm\hskip1mm
+	\insertlogo
+\end{textblock*}
+
+\begin{textblock*}{\dimexpr\paperwidth-\beamerLogoWidth-.3\beamerHeaderHeight\relax}
+	(\dimexpr\beamerLogoWidth\relax,0pt)
+	\vbox{
+		\begin{beamercolorbox}[ht=.3\beamerHeaderHeight,dp=.1\beamerHeaderHeight,wd=\linewidth,right]{} %dp stellt den Abstand zwischen unterer Kante und Text innerhalb der Box ein
+		    	\ifx\headerModeSubSection\undefined
+		    		\ifx\headerModeSection\undefined
+		    		\else
+		  \ifnum\thesection=0
+		  \else
+			    	\usebeamerfont{sectionhead}\thesection.~\insertsectionhead% Kapitelüberschrift
+		  \fi
+		\fi
+		    	\else
+		 \ifnum\thesection=0
+		 \else
+		      \ifnum\thesubsubsection=0
+		       	\ifnum\thesubsection=0
+		        	%\vspace{-2.5ex}
+		        	\usebeamerfont{sectionhead}\usebeamercolor[fg]{sectionhead}\thesection.~\insertsectionhead% Kapitelüberschrift
+		  \else
+		        	\usebeamerfont{subsectionhead}\usebeamercolor[fg]{subsectionhead}\thesection.\thesubsection~\insertsubsectionhead% Kapitelunterüberschrift
+		  \fi
+			\else
+		     \usebeamerfont{subsectionhead}\usebeamercolor[fg]{subsectionhead}\thesection.\thesubsection.\thesubsubsection~\insertsubsubsectionhead% Kapitelunterüberschrift
+		 \fi
+		 \fi
+		\fi
+		\end{beamercolorbox}
+
+
+	
+	    % Bereich für frametitle
+	    \ifbeamer@othr@frametitleCenter
+	    \begin{beamercolorbox}[ht=.45\beamerHeaderHeight,dp=.1\beamerHeaderHeight,wd=\linewidth,center]{}
+	    \else
+	    \begin{beamercolorbox}[ht=.45\beamerHeaderHeight,dp=.1\beamerHeaderHeight,wd=\linewidth,right]{}
+	    \fi
+	      	\ifx\headerModeTitle\undefined
+	      	\else
+		    	%\vspace{.35cm}
+		        \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle% 
+		    \fi
+		\end{beamercolorbox}
+	}
+\end{textblock*}
+\begin{textblock*}{\paperwidth}(0pt,\beamerHeaderHeight)
+    \vskip-0.3pt
+
+	\begin{beamercolorbox}[wd=\paperwidth,ht=.5bp]{blackbox}
+	\end{beamercolorbox}
+\end{textblock*}
+\vskip\dimexpr\beamerHeaderHeight+5pt\relax
+}
+
+\defbeamertemplate*{frametitle}{OTHR}[1][left]
+{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \vskip-.8cm
+  \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}%
+    \vbox{}%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+%    \strut\insertframetitle\strut\par%
+	 \vskip-.8cm
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      \vskip1cm
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\hskip.7cm\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-1ex%
+    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+}
+
+\defbeamertemplate*{footline}{OTHR}
+{
+  \begin{beamercolorbox}[wd=\paperwidth,ht=.5bp]{blackbox}%
+  \end{beamercolorbox}
+  \vskip1bp
+  	\hskip.5pt
+	  \hbox{%
+	  \begin{beamercolorbox}[wd=.332\paperwidth,ht=0.24cm,dp=.1cm,left]{author in head/foot}%
+	    \usebeamerfont{author in head/foot}\hspace*{2ex}\insertshortauthor%
+	  \end{beamercolorbox}%
+	  \begin{beamercolorbox}[wd=.332\paperwidth,center]{title in head/foot}%
+	    \usebeamerfont{title in head/foot}\insertshorttitle%
+	  \end{beamercolorbox}%
+	  \begin{beamercolorbox}[wd=.332\paperwidth,right]{date in head/foot}%
+	    \usebeamerfont{date in head/foot}\insertshortdate{}
+	    \ifbeamer@othr@pageNumbers
+		    \hspace*{2em}%
+		    \insertframenumber{} / \inserttotalframenumber%
+		\fi
+		\hspace*{2ex}
+	  \end{beamercolorbox}
+  }%
+  \vskip0pt%
+}
+ 
+\define@key{beamerframe}{title}[true]{%
+    \setbeamertemplate{footline}{}%
+    \setbeamertemplate{navigation symbols}{}
+}
+
+\define@key{beamerframe}{nosection}[true]{%
+    \setbeamercolor{sectionhead}{fg=white}
+    \setbeamercolor{subsectionhead}{fg=white}
+}
+
+%\ifbeamer@othr@handout
+%	\usepackage{pgfpages}
+%	\pgfpagesuselayout{4 on 1}[a4paper, landscape, border shrink=5mm]
+%	\setbeamertemplate{background canvas}{
+%		\tikz \draw (current page.north west) rectangle (current page.south east);
+%	}
+%\fi

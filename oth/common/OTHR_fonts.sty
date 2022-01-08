@@ -1,0 +1,72 @@
+%
+% Zeichensatzdefinition nach dem Corporate Identity Design der OTH Regensburg
+%
+\ProvidesPackage{OTHR_fonts}[2019/05/01]
+\RequirePackage{iftex}
+%
+%
+\def\perform@AutomaticFontsetting{
+\RequirePackage{fontspec}
+\IfFontExistsTF{Lucida Grande}{\set@LucidaGrandeFont}{
+\message{Font Lucida Grande is not present. Falling back to font Lucida Bright OT.}
+\IfFontExistsTF{Lucida Bright OT}
+{\set@LucidaOTFont}{
+\message{Font Lucida Bright OT is not present. Falling back to font Dejavu.}
+\set@DejaVuFont}
+}
+}
+%
+\def\set@DejaVuFont{
+\ifLuaTeX\relax\else\RequirePackage[T1]{fontenc}\fi
+\RequirePackage[scaled=0.91]{DejaVuSans}
+\RequirePackage[scaled=0.91]{DejaVuSansMono}
+\RequirePackage[scaled=0.91]{DejaVuSerif}
+}
+%
+\def\set@LucidaFont{
+\RequirePackage[T1]{fontenc}
+\RequirePackage{textcomp}
+\RequirePackage[expert,vargreek,altbullet]{lucidabr}
+}
+%
+\def\set@LucidaOTFont{
+\RequirePackage{fontspec}
+\setmainfont[Ligatures={TeX, Common},
+               Numbers={OldStyle, Proportional},
+               Kerning=On]{Lucida Bright OT}
+\setsansfont[Ligatures={TeX, Common},
+               Numbers={OldStyle, Proportional}]{Lucida Sans OT}
+\setmonofont{Lucida Sans Typewriter OT}
+}
+%
+\def\set@LucidaGrandeFont{
+\RequirePackage{fontspec}
+\setmainfont[Ligatures={TeX, Common},
+               Numbers={OldStyle, Proportional},
+               Kerning=On]{Lucida Grande}
+\setsansfont[Ligatures={TeX, Common},
+               Numbers={OldStyle, Proportional}]{Lucida Grande}
+\setmonofont{Courier New}}
+%
+\def\set@RomanFont{
+\renewcommand{\familydefault}{\rmdefault}
+}
+%
+%% Declare the options
+%
+\DeclareOption{AutomaticFonts}{\AtEndOfPackage\perform@AutomaticFontsetting}
+\DeclareOption{LucidaGrande}{\AtEndOfPackage\set@LucidaGrandeFont}
+\DeclareOption{Lucida}{\AtEndOfPackage\set@LucidaFont}
+\DeclareOption{lucida}{\AtEndOfPackage\set@LucidaFont}
+\DeclareOption{LucidaOT}{\AtEndOfPackage\set@LucidaOTFont}
+\DeclareOption{lucidaOT}{\AtEndOfPackage\set@LucidaOTFont}
+\DeclareOption{KeepRoman}{\AtEndOfPackage\set@RomanFont}
+\DeclareOption{DejaVu}{\AtEndOfPackage\set@DejaVuFont}
+\DeclareOption*{}%accept any undefined options here!
+%
+\ifLuaTeX\ExecuteOptions{AutomaticFonts}\else\ExecuteOptions{DejaVu}\fi
+\ProcessOptions\relax
+%
+\renewcommand{\familydefault}{\sfdefault}
+%
+

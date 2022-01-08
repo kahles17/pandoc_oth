@@ -1,0 +1,112 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeOTHR}[2015/12/03 v0.1]
+
+% \changefontsizes-command
+\RequirePackage{scrextend}
+
+% default for titleMode is full
+\def\beamer@othr@headerMode{full}
+
+% default department is OTH
+\def\beamer@othr@department{OTHR}
+
+% pageNumbers
+\newif\ifbeamer@othr@pageNumbers\beamer@othr@pageNumbersfalse
+
+% navbar
+\newif\ifbeamer@othr@noNavbar\beamer@othr@noNavbartrue
+
+% frametitle is centered
+\newif\ifbeamer@othr@frametitleCenter\beamer@othr@frametitleCenterfalse
+
+
+% handout:
+% wenn angegeben: 4 Folien auf einer A4 Seite landscape
+% wenn nicht angegeben: normale Präsentation
+%\newif\ifbeamer@othr@handout\beamer@othr@handoutfalse
+
+% set default font-size
+\changefontsizes{22pt}
+
+% set provided option (if any)
+\DeclareOptionBeamer{headerMode}[full]{\def\beamer@othr@headerMode{#1}}
+\DeclareOptionBeamer{department}[OTHR]{\def\beamer@othr@department{#1}}
+\DeclareOptionBeamer{navbar}{\beamer@othr@noNavbarfalse}
+\DeclareOptionBeamer{pageNumbers}{\beamer@othr@pageNumberstrue}
+\DeclareOptionBeamer{frametitleCenter}{\beamer@othr@frametitleCentertrue}
+%\DeclareOptionBeamer{handout}{\beamer@othr@handouttrue}
+
+\DeclareOptionBeamer{8pt}{\changefontsizes{8pt}}
+\DeclareOptionBeamer{9pt}{\changefontsizes{9pt}}
+\DeclareOptionBeamer{10pt}{\changefontsizes{10pt}}
+\DeclareOptionBeamer{11pt}{\changefontsizes{11pt}}
+\DeclareOptionBeamer{12pt}{\changefontsizes{12pt}}
+\DeclareOptionBeamer{14pt}{\changefontsizes{14pt}}
+\DeclareOptionBeamer{15pt}{\changefontsizes{15pt}}
+\DeclareOptionBeamer{16pt}{\changefontsizes{16pt}}
+\DeclareOptionBeamer{17pt}{\changefontsizes{17pt}}
+\DeclareOptionBeamer{20pt}{\changefontsizes{20pt}}
+\DeclareOptionBeamer{22pt}{\changefontsizes{22pt}}
+\DeclareOptionBeamer{24pt}{\changefontsizes{24pt}}
+\DeclareOptionBeamer{26pt}{\changefontsizes{26pt}}
+\DeclareOptionBeamer{28pt}{\changefontsizes{28pt}}
+
+% process the options
+\ProcessOptionsBeamer
+
+% include corporate design settings
+\RequirePackageWithOptions{OTHR_colors}
+\RequirePackage{OTHR_fonts}
+\RequirePackageWithOptions{OTHR_logos}
+
+% textpos is used for header positioning
+\RequirePackage[absolute,overlay]{textpos}
+\RequirePackage{pdftexcmds}
+
+% improved spacing between figure and caption
+\RequirePackage{caption}
+
+
+% das ist ein hack, um latex zu zwingen, das frametitle template aufzurufen,
+% auch wenn kein frametitle gesetzt ist (textposition-glitch fix)
+\RequirePackage{etoolbox}
+\patchcmd{\endbeamer@frameslide}
+	{\ifx\beamer@frametitle\@empty}
+	{\iffalse}
+	{}
+	{\errmessage{failed to patch}}
+
+\let\olditem\item
+\renewcommand{\item}{
+\itemsep.5mm
+\parskip.5mm
+\olditem
+}
+
+\setlength{\leftmargini}{1em}
+\setlength{\leftmarginii}{1em}
+\setlength{\leftmarginiii}{1em}
+
+\AtBeginEnvironment{enumerate}{%
+	\setlength{\leftmargini}{1.2em}
+	\setlength{\leftmarginii}{2em}
+	\setlength{\leftmarginiii}{2em}
+}
+
+\newcommand{\setlistspacing}[2]{\def\@ld{#1}\expandafter\def\csname
+@list\romannumeral\@ld \endcsname{\leftmargin\csname
+leftmargin\romannumeral\@ld \endcsname
+    \topsep    #2
+    \parsep    0\p@   \@plus\p@
+}}
+\setlistspacing{2}{0ex}
+\setlistspacing{3}{.4ex}
+
+\useoutertheme{othr}
+\useinnertheme[shadow=false]{othr}
+\usefonttheme{othr}
+\usecolortheme{othr}
+
+\mode
+<all>
+

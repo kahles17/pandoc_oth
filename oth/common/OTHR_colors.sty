@@ -1,0 +1,164 @@
+%
+% Farbdefinitionen nach dem Corporate Identity Design der OTH Regensburg
+% Stand Oktober 2015
+%
+\ProvidesPackage{OTHR_colors}[2015/10/01]
+%
+\RequirePackageWithOptions{xcolor}
+\usepackage{xkeyval}
+%
+% if fuer blackFont-Option
+\newif\if@doBlackFont
+\@doBlackFontfalse
+%
+%Optionen
+\DeclareOptionX*{}
+\DeclareOptionX{blackFont}{
+	\@doBlackFonttrue
+}
+\def\@currentDepartment{OTHR}
+\DeclareOptionX{department}[OTHR]{
+	\def\@currentDepartment{#1}
+}
+\ProcessOptionsX*\relax
+
+
+% [ type ]{ model-list }{ head }{ tail }{ set spec }
+\definecolorset{cmyk}{OTHR}{}{grau,0,0,0,.50;schwarz,0,0,0,1.00}
+%
+% Fakultäten (Grundfarben)
+\definecolorset{cmyk}{Fak}{}{%
+AM,.03,.03,.15,.20;%
+ANK,.03,.03,.15,.20;%
+A,0,0,1.00,0;%
+B,0,.60,1.00,0;%
+BW,0,.90,1.00,.20;%
+EI,.60,1.00,0,0;%
+IM,1.00,.80,0,0;%
+M,1.00,0,.35,0;%
+S,1.00,0,.90,.10%
+}
+\definecolor{ZWW}{cmyk}{.20,0,1.00,0}
+\definecolor{LASIII}{rgb}{.223,.412,.489}
+\definecolor{LASIIIcontrast}{rgb}{.737,.850,.482}
+
+
+
+% 1. Arg: Basisname der Farbe
+% 2. Arg: Farbe von der abgeleitet wird
+% 3. Arg: Schriftfarbe
+% 4. Arg: Kontrastfarbe
+\newcommand{\@createColors}[4]{
+	\colorlet{#1}{#2}
+	\colorlet{#125}{#1!25}
+	\colorlet{#150}{#1!50}
+	\colorlet{#190}{#1!90}
+	\if@doBlackFont
+		% wenn die Kontrastfarbe nicht weiss ist,
+		% so darf sie auch bei blackFont nicht weiss sein
+		\ifnum\pdf@strcmp{\unexpanded{#4}}{white}=0 %
+			\colorlet{#1FontColor}{black}
+		    \colorlet{#1ContrastColor}{white}
+		\else
+		    \colorlet{#1FontColor}{white}
+		    \colorlet{#1ContrastColor}{black}
+		\fi
+	\else
+		\colorlet{#1FontColor}{#3}
+		\colorlet{#1ContrastColor}{#4}
+	\fi
+}
+
+\newcommand{\@createCurrentDepartmentColors}[1]{
+	\colorlet{Accent}{#1}
+	\colorlet{Accent25}{#125}
+	\colorlet{Accent50}{#150}
+	\colorlet{Accent90}{#190}
+	\colorlet{AccentFontColor}{#1FontColor}
+	\colorlet{AccentContrastColor}{#1ContrastColor}
+}
+
+% OTHR Farben
+\@createColors{OTHR}{OTHRgrau}{OTHRgrau}{white}
+
+% sonstiges
+\@createColors{ZWW}{ZWW}{OTHRgrau}{black}
+
+% Fakultätsfarben
+\@createColors{FakA}{FakA}{OTHRgrau}{black}
+\@createColors{FakAM}{FakAM}{FakAM}{black}
+\@createColors{FakANK}{FakANK}{FakANK}{black}
+\@createColors{FakB}{FakB}{FakB}{white}
+\@createColors{FakBW}{FakBW}{FakBW}{white}
+\@createColors{FakEI}{FakEI}{FakEI}{white}
+\@createColors{FakIM}{FakIM}{FakIM}{white}
+\@createColors{FakM}{FakM}{FakM}{white}
+\@createColors{FakS}{FakS}{FakS}{white}
+
+%% Center
+\@createColors{RCER}{OTHRgrau}{OTHRgrau}{white}
+\@createColors{RCHST}{OTHRgrau}{OTHRgrau}{white}
+
+
+% Laborfarben
+% FakAM
+\@createColors{NACH}{FakANK}{FakANK}{white}
+\@createColors{SappZ}{FakANK}{FakANK}{white}
+
+% FakB
+\@createColors{Geo}{FakB}{FakB}{white}
+\@createColors{KNB}{FakB}{FakB}{white}
+
+% Fak BW
+\@createColors{12Science}{FakBW}{FakBW}{white}
+
+% FakEI
+\@createColors{Bisp}{FakEI}{FakEI}{white}
+\@createColors{LAS3}{LASIII}{LASIII}{LASIIIcontrast}
+\@createColors{DK0PT}{FakEI}{FakEI}{white}
+\@createColors{FENES}{FakEI}{FakEI}{white}
+\@createColors{MRU}{FakEI}{FakEI}{white}
+\@createColors{SES}{FakEI}{FakEI}{white}
+
+% FakIM
+\@createColors{CCSE}{FakIM}{FakIM}{white}
+\@createColors{eHealth}{FakIM}{FakIM}{white}
+\@createColors{ITZ}{FakIM}{FakIM}{white}
+\@createColors{LFD}{FakIM}{FakIM}{white}
+\@createColors{MD}{FakIM}{FakIM}{white}
+\@createColors{ReMIC}{FakIM}{FakIM}{white}
+\@createColors{SEC}{FakIM}{FakIM}{white}
+
+% FakM
+\@createColors{BFM}{FakM}{FakM}{white}
+\@createColors{BMA}{FakM}{FakM}{white}
+\@createColors{CEEC}{FakM}{FakM}{white}
+\@createColors{CFD}{FakM}{FakM}{white}
+\@createColors{IPF}{FakM}{FakM}{white}
+\@createColors{KIB}{FakM}{FakM}{white}
+\@createColors{KWK}{FakM}{FakM}{white}
+\@createColors{LAT}{FakM}{FakM}{white}
+\@createColors{LBM}{FakM}{FakM}{white}
+\@createColors{LeanLab}{FakM}{FakM}{white}
+\@createColors{LFT}{FakM}{FakM}{white}
+\@createColors{LFW}{FakM}{FakM}{white}
+\@createColors{LMP}{FakM}{FakM}{white}
+\@createColors{LMS}{FakM}{FakM}{white}
+\@createColors{LRT}{FakM}{FakM}{white}
+\@createColors{LWM}{FakM}{FakM}{white}
+\@createColors{LWS}{FakM}{FakM}{white}
+\@createColors{MKS}{FakM}{FakM}{white}
+\@createColors{MST}{FakM}{FakM}{white}
+\@createColors{RRRU}{FakM}{FakM}{white}
+\@createColors{RST}{FakM}{FakM}{white}
+\@createColors{FEM}{FakM}{FakM}{white}
+
+% FakS
+\@createColors{IST}{FakS}{FakS}{white}
+\@createColors{LP}{FakS}{FakS}{white}
+\@createColors{PT}{FakS}{FakS}{white}
+
+
+% current Department
+\@createCurrentDepartmentColors{\@currentDepartment}
+

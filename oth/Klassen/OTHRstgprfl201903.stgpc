@@ -1,0 +1,34 @@
+%
+% Author: Michael Niemetz 2019
+%
+%
+%\shorthandon{"}%
+\newcommand{\qtopictext}[1]{%
+  \stringcases
+    {#1}%
+    {%
+{101}{Die angestrebten Lernergebnisse des Studiengangs stehen im Einklang mit dem Ausbildungsprofil der OTH Regensburg (gem. der Beschreibung zum Ausbildungsprofil und dem Qualitätsanspruch und dem Leitbild der Hochschule).}
+{102}{Studiengangbezeichnung, Abschlussgrad und Qualifikationsvoraussetzungen stehen in Einklang mit den Ausbildungszielen sowie mit staatlichen Vorgaben.}
+{103}{Studienstruktur (Voll"= oder Teilzeit) und Studiendauer berücksichtigen Ausbildungsziel und Zielgruppe}
+{104}{Modularisierung im Detail: Die Modulbeschreibungen sind inhaltlich stimmig und werden regelmäßig aktualisiert}
+{105}{Die Angaben zu den zu erwerbenden Leistungspunkten sind modulbezogen und werden regelmäßig evaluiert und aktualisiert.}
+{201}{Die angestrebten Lernergebnisse und Qualifikationsziele des Studiengangs stehen im Einklang mit dem jeweiligen nationalen Qualifikationsrahmen für Hochschulabschlüsse (HQR).}
+{202}{Der Studiengang befähigt zum wissenschaftlichen Arbeiten; Forschungs"= und Entwicklungsaktivitäten werden auf systematische Weise in Studium und Lehre integriert.}
+{203}{Der Studiengang befähigt zum selbständigen beruflichen Handeln in einem adäquaten Beschäftigungsfeld.}
+{204}{Der Studiengang befähigt zum gesellschaftlichen Engagement und fördert die Persönlichkeitsentwicklung.}
+{205}{Das Studienprogramm berücksichtigt die hochschulinternen Vorgaben und Ziele im Bereich der Internationalisierung und beinhaltet ein Konzept zur Förderung der Mobilität der Studierenden.}
+{206}{Ein stimmiges Curriculum und adäquate Lehr- und Lernformate sind festgelegt.}
+{207}{Kooperative Studiengänge: Verträge sind vorhanden, rechtlich überprüft und gültig, Transparenz für Studierende und Lehrende ist gegeben.}
+{208}{Praxisintegrierendes / Ausbildungsintegrierendes duales Studium: Das Studienprogramm wird dem besonderen Profilanspruch gerecht.}
+{209}{Berufsbegleitendes Bachelorstudium: Das Studienprogramm wird dem besonderen Profilanspruch gerecht.}
+{210}{Weiterbildendendes Masterstudium: Das Studienprogramm wird dem besonderen Profilanspruch gerecht.}
+{301}{Studierbarkeit: Die Studien"= und Prüfungsorganisation ermöglicht den Abschluss des Studiums in der Regelstudienzeit. Die Prüfungen sind kompetenzorientiert.}
+{302}{Ressourcen und Aufnahmekapazität: Personal, fachlich und methodisch - didaktisch qualifiziertes Lehrpersonal, sowie Räume stehen ausreichend zur Verfügung.}
+{303}{Studentische Lehrveranstaltungsevaluation: Die Qualität der Lehrveranstaltungen wird regelmäßig nach dokumentiertem Verfahren durch die Studierenden beurteilt. Studierende und Absolventinnen und Absolventen werden bei der Weiterentwicklung des Studienprogramms gehört.}
+{304}{Das Studienkonzept berücksichtigt die Geschlechtergerechtigkeit und die Belange von Studierenden in unterschiedlichen Lebenslagen.}
+{305}{Studiengangbezogenes Qualitätsmanagement (QM): Die Studiengangkommission ist eingerichtet und tagt regelmäßig; QM"=relevante Unterlagen liegen vor und sind bekannt gemacht.}
+{306}{Die Qualität der Lehrmodule bei kooperativen, internationalen Studienprogrammen (auch Joint"=Programms und Double"=Degree"=Programms) ist bei den Partnerhochschulen sichergestellt.}
+}%
+{nada}%
+}%
+%

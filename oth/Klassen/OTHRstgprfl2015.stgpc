@@ -1,0 +1,35 @@
+%
+% Author: Michael Niemetz 2019
+%
+%
+%\shorthandon{"}%
+\newcommand{\qtopictext}[1]{%
+  \stringcases
+    {#1}%
+    {%
+{101}{Die angestrebten Lernergebnisse des Studiengangs stehen im Einklang mit dem Ausbildungsprofil der OTH Regensburg (gem. der Beschreibung zum Ausbildungsprofil und dem Qualitätsanspruch und dem und Leitbild der Hochschule).}
+{102}{Die angestrebten Lernergebnisse und Qualifikationsziele des Studiengangs stehen im Einklang mit dem jeweiligen nationalen Qualifikationsrahmen für Hochschulabschlüsse.}
+{103}{Der Studiengang befähigt zum selbständigen beruflichen Handeln in einem adäquaten Beschäftigungsfeld.}
+{104}{Studentische Lehrveranstaltungsevaluation: Die Qualität der Lehrveranstaltungen wird regelmäßig nach dokumentiertem Verfahren durch die Studierenden beurteilt. Die Studierenden werden bei der Weiterentwicklung des Studienprogramms gehört.}
+{105}{Das Studienkonzept berücksichtigt die Geschlechtergerechtigkeit und die Belange von Studierenden in unterschiedlichen Le\-bens\-la\-gen.}
+{106}{Studienbewerber und Studienbewerberinnen sowie Studierende haben ein niederschwelliges Angebot zu Studienfachberatung und werden regelmäßig über ihren Studiengang (Studienaufbau, Regeln zu Studienfortschritt und Prüfungen, Wahlmöglichkeiten) informiert.}
+{201}{Studiengangbezeichnung, Abschlussgrad, Studienstruktur und Qualifikationsvoraussetzungen stehen in Einklang mit den Ausbildungszielen sowie mit staatlichen Vorgaben.}
+{202}{Der Studiengang befähigt zum wissenschaftlichen Arbeiten; Forschungs"= und Entwicklungsaktivitäten werden auf systematische Weise in Studium und Lehre integriert.}
+{203}{Der Studiengang befähigt zum gesellschaftlichen Engagement und fördert die Persönlichkeitsentwicklung.}
+{204}{Modularisierung im Detail: Modulgrößen, Modulbeschreibungen und Work"-load"=Angaben (Modulkatalog) sind inhaltlich stimmig und werden regelmäßig aktualisiert.}
+{205}{Lehrveranstaltungen: Adäquate Lehrformen und Prüfungsformen sind festgelegt.}
+{206}{Prüfungswesen: Anzahl, Art und Umfang der Prüfungen pro Modul sind sachgerecht, transparent und lernergebnisorientiert.}
+{207}{Die Qualität der Lehrmodule bei kooperativen, internationalen Studienprogrammen (auch Joint"=Programms und Double"=Degree"=Programms) ist bei den Partnerhochschulen sichergestellt.}
+{301}{Studierbarkeit: Die Studien"= und Prüfungsorganisation ermöglicht den Abschluss des Studiums in der Regelstudienzeit.}
+{302}{Studienstruktur (Voll"= oder Teilzeit), Studiendauer, Studienform und Lehrveranstaltungstermine berücksichtigen Ausbildungsziel und Zielgruppe.}
+{303}{Das Studienprogramm berücksichtigt die hochschulinternen Vorgaben und Ziele im Bereich der Internationalisierung und beinhaltet ein Konzept zur Förderung der Mobilität der Studierenden.}
+{304}{Die Beschreibung der angestrebten Lernergebnisse des Studiengangs sind für die Lehrenden, die Studierenden und Bewerber und Bewerberinnen gut zugänglich.}
+{305}{Die Studienpläne mit Detailangaben zu den Modulen liegen vor und sind leicht zugänglich.}
+{306}{QM"=relevante Unterlagen zu den Studienprogrammen (Lehrberichte, Studiengangkommissionsprotokolle, statistische Daten) sind aktuell und vorhanden.}
+{307}{Ressourcen und Aufnahmekapazität: Personal und Räume stehen ausreichend zur Verfügung.}
+{308}{Lehrende werden zur fachlichen und/oder didaktischen Weiterbildung angeregt; Lehrbeauftragte verfügen über die notwendige Qualifikation.}
+{309}{Kooperative Studiengänge: Verträge sind vorhanden, rechtlich überprüft und gültig, Transparenz für Studierende und Lehrende ist gegeben.}
+}%
+{nada}%
+}%
+%
