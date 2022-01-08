@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Compile Markdown",
+        "type": "shell",
+        "command": "zsh scripts/test.sh",
+        "presentation": {
+          "reveal": "always"
+        }
+      }
+    ]
+}
