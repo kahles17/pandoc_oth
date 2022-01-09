@@ -31,4 +31,4 @@ If you use linux and vim go to [this repo by ayham291](https://github.com/ayham2
 
 Clone the repository and then open it with VSCode.
 
-Just hit <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> in your VSCode project to compile the PDF
+Just hit <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>b</kbd> in your VSCode project to compile the PDF
