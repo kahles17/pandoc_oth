@@ -5,7 +5,7 @@
         "label": "Compile Markdown",
         "type": "shell",
         "group": "build",
-        "command": "scripts/test.sh",
+        "command": "scripts/test.bat",
         "presentation": {
           "reveal": "always"
         }
