@@ -5,7 +5,7 @@
         "label": "Compile Markdown",
         "type": "shell",
         "group": "build",
-        "command": "zsh scripts/test.sh",
+        "command": "scripts/test.sh",
         "presentation": {
           "reveal": "always"
         }
