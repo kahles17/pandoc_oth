@@ -1,7 +1,7 @@
 ---
 lang: de
 fontsize: 14pt
-documenttype: Studienarbeit
+documenttype: Bachelorarbeit
 studentid: 3225860
 department: Elektro- und Informationstechnik
 studyprogramme: Bachelor Elektro- und Informationstechnik
@@ -24,7 +24,7 @@ linkcolor: black
 filecolor: black
 urlcolor: blue
 citecolor: blue
-toc: false
+toc: true 
 lof: false
 lot: false
 lol: false
